@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: my-ngx-replicaset
+  labels:
+    app: my-ngx-app
+    tier: front-end
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-ngx-app
+  template:
+    metadata:
+      name: my-ngx-pod
+      labels:
+        app: my-ngx-app
+        tier: front-end
+    spec:
+      containers:
+        - name: my-ngx-container
+          image: nginx:latest
+          ports:
+            - containerPort: 80

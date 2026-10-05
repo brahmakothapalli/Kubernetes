@@ -1,0 +1,13 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: time-check
+  namespace: datacenter
+spec:
+  template:
+    spec:
+      containers:
+        - name: time-check
+          image: busybox:latest
+          command: ["while", "true", ";", "do", "date", ";", "sleep", "$TIME_FREQ", ";", "done"]
+      restartPolicy: Never

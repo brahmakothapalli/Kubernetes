@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-ngx-deployment
+  labels:
+    app: my-ngx-app
+    tier: front-end
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-ngx-app
+  template:
+    metadata:
+      name: my-ngx-app
+      labels:
+        tier: front-end
+        app: my-ngx-app
+    spec:
+      containers:
+        - name: my-ngx-container
+          image: nginx:latest
+          ports:
+            - containerPort: 80
